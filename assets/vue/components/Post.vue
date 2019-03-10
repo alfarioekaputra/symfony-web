@@ -1,7 +1,7 @@
 <template>
     <div class="card w-100 mt-2">
         <div class="card-body">
-            <h5 class="card-title">{{ title }}</h5>
+            <h2 class="card-title">{{ title }}</h2>
             <p class="card-text">{{ message }}</p>
         </div>
     </div>
