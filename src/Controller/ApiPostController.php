@@ -58,4 +58,23 @@ final class ApiPostController extends AbstractController
 
         return new JsonResponse($data, 200, [], true);
     }
+
+    /**
+     * @Rest\Put("/api/post/{postId}", name="editPost")
+     * @param int $postId
+     * @param Request $request
+     * @return JsonResponse
+     * @isGranted("ROLE_ADMIN")
+     */
+    public function update(int $postId, Request $request): JsonResponse
+    {
+        $title = $request->request->get('title');
+        $message = $request->request->get('message');
+
+        $postEntity = $this->postService->updatePost($postId, $title, $message);
+        $data = $this->serializer->serialize($postEntity, 'json');
+
+        return new JsonResponse($data, 200, [], true);
+    }
+    
 }
