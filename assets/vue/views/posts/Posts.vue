@@ -35,8 +35,8 @@
 </template>
 
 <script>
-    import Post from '../components/Post';
-    import ErrorMessage from '../components/ErrorMessage';
+    import Post from '../../components/Post';
+    import ErrorMessage from '../../components/ErrorMessage';
 
     export default {
         name: 'posts',

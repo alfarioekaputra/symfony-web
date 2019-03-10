@@ -3,7 +3,7 @@ import VueRouter from 'vue-router';
 import store from '../store';
 import Home from '../views/Home';
 import Login from '../views/Login';
-import Posts from '../views/Posts';
+import Posts from '../views/posts/Posts';
 
 Vue.use(VueRouter);
 
