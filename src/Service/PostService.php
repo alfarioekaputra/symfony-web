@@ -19,7 +19,7 @@ final class PostService
         $this->em = $em;
     }
 
-    /** 
+    /**
      * @param string $title
      * @param string $message
      * @return Post
@@ -47,13 +47,13 @@ final class PostService
      * @param int $postId
      * @param string $title
      * @param string $message
-     * 
+     *
      * @return Post
      */
     public function updatePost(int $postId, string $title, string $message): Post
     {
         $postEntity = $this->em->getRepository(Post::class)->find($postId);
-
+        
         $postEntity->setTitle($title);
         $postEntity->setMessage($message);
         $this->em->persist($postEntity);

@@ -15,7 +15,7 @@ final class ApiPostController extends AbstractController
     /** @var SerializerInterface */
     private $serializer;
 
-    /** @var $postService */
+    /** @var PostService */
     private $postService;
 
     /**
@@ -76,5 +76,4 @@ final class ApiPostController extends AbstractController
 
         return new JsonResponse($data, 200, [], true);
     }
-    
 }

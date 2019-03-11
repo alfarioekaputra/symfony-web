@@ -22,9 +22,6 @@ export default {
         isAuthenticated (state) {
             return state.isAuthenticated;
         },
-        email (state) {
-            return localStorage.setItem('email', state.email);
-        },
         hasRole (state) {
             return role => {
                 return state.roles.indexOf(role) !== -1;
@@ -42,7 +39,7 @@ export default {
             state.isLoading = false;
             state.error = null;
             state.isAuthenticated = true;
-            state.email = data.email;
+            state.email = localStorage.setItem('email', data.email);
             state.roles = data.roles;
         },
         ['AUTHENTICATING_ERROR'](state, error) {
