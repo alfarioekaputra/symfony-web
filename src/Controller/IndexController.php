@@ -16,7 +16,7 @@ final class IndexController extends AbstractController
      * @return Response
      * @throws JsonException
      */
-    public function indexAction(): Response
+    public function index(): Response
     {
         /** @var User $user */
         $user = $this->getUser();

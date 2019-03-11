@@ -8,9 +8,17 @@
                         <router-link class="nav-item" tag="li" to="/home" active-class="active">
                             <a class="nav-link text-white">Home</a>
                         </router-link>
-                        <router-link class="nav-item" tag="li" to="/posts" active-class="active">
-                            <a class="nav-link text-white">Posts</a>
-                        </router-link>
+                        <b-nav-item-dropdown text="Posts">
+                            <b-dropdown-item>
+                                <router-link class="nav-item" tag="li" to="/posts" active-class="active">
+                                    <a class="nav-link">Index</a>
+                                </router-link>
+                                <router-link class="nav-item" tag="li" to="/post/create" active-class="active">
+                                    <a class="nav-link">Create</a>
+                                </router-link>
+                            </b-dropdown-item> 
+                        </b-nav-item-dropdown>
+                        
                     </b-navbar-nav>
 
                     <!-- Right aligned nav items -->

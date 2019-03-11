@@ -4,7 +4,7 @@ import store from '../store';
 import Home from '../views/Home';
 import Login from '../views/Login';
 import IndexPosts from '../views/posts/Index';
-import Posts from '../views/posts/Posts';
+import CreatePost from '../views/posts/Create';
 
 Vue.use(VueRouter);
 
@@ -14,6 +14,7 @@ let router = new VueRouter({
         { path: '/home', component: Home },
         { path: '/login', component: Login },
         { path: '/posts', component: IndexPosts, meta: { requiresAuth: true } },
+        { path: '/post/create', component: CreatePost, meta: { requiresAuth: true } },
         { path: '*', redirect: '/home' }
     ],
 });
