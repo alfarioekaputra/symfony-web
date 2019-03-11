@@ -1,27 +1,33 @@
 <template>
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <router-link class="navbar-brand" to="/home">App</router-link>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <router-link class="nav-item" tag="li" to="/home" active-class="active">
-                        <a class="nav-link">Home</a>
-                    </router-link>
-                    <router-link class="nav-item" tag="li" to="/posts" active-class="active">
-                        <a class="nav-link">Posts</a>
-                    </router-link>
-                    <li class="nav-item" v-if="isAuthenticated">
-                        <a class="nav-link" href="/api/security/logout">Logout</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+    <b-container fluid>
+        <b-navbar toggleable="lg" type="darkest" variant="info">
+            <b-navbar-brand href="#" class="text-white">NavBar</b-navbar-brand>
+            <b-navbar-toggle target="nav_collapse" />
+                <b-collapse is-nav id="nav_collapse">
+                    <b-navbar-nav>
+                        <router-link class="nav-item" tag="li" to="/home" active-class="active">
+                            <a class="nav-link text-white">Home</a>
+                        </router-link>
+                        <router-link class="nav-item" tag="li" to="/posts" active-class="active">
+                            <a class="nav-link text-white">Posts</a>
+                        </router-link>
+                    </b-navbar-nav>
 
+                    <!-- Right aligned nav items -->
+                    <b-navbar-nav class="ml-auto">
+                        
+                        <b-nav-item-dropdown right v-if="isAuthenticated">
+                            <!-- Using button-content slot -->
+                            <template slot="button-content"><em>{{email}}</em></template>
+                            <b-dropdown-item href="#">Profile</b-dropdown-item>
+                            <b-dropdown-item href="/api/security/logout">Signout</b-dropdown-item>
+                        </b-nav-item-dropdown>
+                    </b-navbar-nav>
+                </b-collapse>
+        </b-navbar>
+        
         <router-view></router-view>
-    </div>
+    </b-container>
 </template>
 
 <script>
@@ -53,6 +59,9 @@
             isAuthenticated () {
                 return this.$store.getters['security/isAuthenticated']
             },
+            email () {
+                return localStorage.getItem('email');
+            }
         },
     }
 </script>

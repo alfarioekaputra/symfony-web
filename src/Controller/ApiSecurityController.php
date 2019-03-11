@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Serializer\SerializerInterface;
 
 /**
  * Class ApiPostController
@@ -15,6 +16,19 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
  */
 final class ApiSecurityController extends AbstractController
 {
+    /** @var SerializerInterface */
+    private $serializer;
+
+    /**
+     * ApiPostController constructor
+     * @param SerializerInterface $serializer
+     *
+     */
+    public function __construct(SerializerInterface $serializer)
+    {
+        $this->serializer = $serializer;
+    }
+
     /**
      * @Route("/api/security/login", name="login")
      * @return JsonResponse
@@ -23,7 +37,12 @@ final class ApiSecurityController extends AbstractController
     {
         /** @var User $user */
         $user = $this->getUser();
-        $response = new JsonResponse($user->getRoles());
+        $user = [
+            "email" => $user->getEmail(),
+            "roles" => $user->getRoles()
+        ];
+        $data = $this->serializer->serialize($user, 'json');
+        $response = new JsonResponse($data, 200, [], true);
         return $response;
     }
 

@@ -6,6 +6,7 @@ export default {
         isLoading: false,
         error: null,
         isAuthenticated: false,
+        email: null,
         roles: [],
     },
     getters: {
@@ -21,6 +22,9 @@ export default {
         isAuthenticated (state) {
             return state.isAuthenticated;
         },
+        email (state) {
+            return localStorage.setItem('email', state.email);
+        },
         hasRole (state) {
             return role => {
                 return state.roles.indexOf(role) !== -1;
@@ -34,11 +38,12 @@ export default {
             state.isAuthenticated = false;
             state.roles = [];
         },
-        ['AUTHENTICATING_SUCCESS'](state, roles) {
+        ['AUTHENTICATING_SUCCESS'](state, data) {
             state.isLoading = false;
             state.error = null;
             state.isAuthenticated = true;
-            state.roles = roles;
+            state.email = data.email;
+            state.roles = data.roles;
         },
         ['AUTHENTICATING_ERROR'](state, error) {
             state.isLoading = false;

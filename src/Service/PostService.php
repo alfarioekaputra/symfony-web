@@ -40,7 +40,7 @@ final class PostService
      */
     public function getAll(): array
     {
-        return $this->em->getRepository(Post::class)->findBy([], ['id' => 'DESC']);
+        return $this->em->getRepository(Post::class)->findBy([], ['id' => 'ASC']);
     }
 
     /**
